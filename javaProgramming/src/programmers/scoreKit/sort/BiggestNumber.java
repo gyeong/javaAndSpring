@@ -6,14 +6,22 @@ import java.util.*;
 
 public class BiggestNumber {
     public static String solution(int[] numbers) {
-        String answer = "";
+        String answer = "", zero = "";
         List<Number> list= new ArrayList<>();
+        Boolean chk = false;
 
-        for (int number : numbers) list.add(new Number(number));
-        Collections.sort(list);
+        for (int number : numbers) {
+            if (number != 0) {
+                list.add(new Number(number));
+                chk = true;
+            } else zero += "0";
+        }
+        if (!chk) return "0";
+        else  Collections.sort(list);
+
         for (Number number : list ) answer += number.strNumber;
 
-        return answer;
+        return answer + zero;
     }
 
     public static class Number implements Comparable<Number>{
@@ -29,7 +37,8 @@ public class BiggestNumber {
             String sum2 = this.strNumber + o.strNumber;
 
             if ( Integer.parseInt(sum1) > Integer.parseInt(sum2) ) return 1;
-            else return -1;
+            else if ( Integer.parseInt(sum1) < Integer.parseInt(sum2) ) return -1;
+            else return 0;
         }
     }
 
