@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 public class Carpet {
     public static int[] solution(int brown, int yellow) {
-        int sum = brown + yellow;
+        int sum = brown + yellow; //48
         int x = 0;
 
         for (int i=3; i<brown/2; i++) {
-            if (sum % 3 > 0) continue;
+            if (sum % i > 0) continue;
+            if ((sum/i)-2 == 0) continue;
             if ( (i-2) * ((sum/i)-2) == yellow ) {
                 x = i;
                 break;
